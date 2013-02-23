@@ -1,0 +1,36 @@
+﻿<Page x:Class="HistBackup.Start"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:local="clr-namespace:HistBackup"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      WindowHeight="280" WindowWidth="600"
+      d:DesignHeight="280" d:DesignWidth="600"
+      ShowsNavigationUI="False"
+      MinHeight="200"
+      DataContext="{x:Static local:Model.Singleton}"
+	  Title="Start">
+    
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Hyperlink}" x:Key="Task">
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <StackPanel Margin="0,20,0,0" Width="500">
+            <TextBlock Margin="0,0,0,20" FontSize="24" FontWeight="Bold">IE10 履歴バックアップ/リストア</TextBlock>
+            <TextBlock Margin="0,0,0,10">行いたい処理を選んでください。</TextBlock>
+            <TextBlock Margin="20,0,0,10" TextWrapping="Wrap">
+                <Hyperlink Style="{StaticResource Task}" NavigateUri="Backup.xaml">バックアップ</Hyperlink><LineBreak />
+                IE10 の履歴情報(WebCacheV01.dat 他)指定したディレクトリにバックアップします。<LineBreak />
+            </TextBlock>
+            <TextBlock Margin="20,0,0,20" TextWrapping="Wrap">
+                <Hyperlink Style="{StaticResource Task}" NavigateUri="Restore.xaml">リストア</Hyperlink><LineBreak />
+                バックアップした履歴情報を復元します。復元後に Windows の再起動が必要です。
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

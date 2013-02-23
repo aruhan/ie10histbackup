@@ -8,5 +8,6 @@ It uses [hobocopy](http://candera.github.com/hobocopy/) to copy locked file.
 LICENSE
 -------
 
-MIT License (MIT)
+MIT License.
+
 
