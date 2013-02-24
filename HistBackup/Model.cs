@@ -29,7 +29,7 @@ namespace HistBackup
         public Model()
         {
             SystemDirectory = Environment.ExpandEnvironmentVariables(@"%LOCALAPPDATA%\Microsoft\Windows\WebCache");
-            var datetime = DateTime.Now.ToString("yyyyMMdd-hhmmyy");
+            var datetime = DateTime.Now.ToString("yyyy-MM-dd hhmmyy");
             _backupDirectory = Path.Combine(BaseDir(), datetime);
         }
 
