@@ -8,9 +8,8 @@
       WindowHeight="280" WindowWidth="600"
       d:DesignHeight="280" d:DesignWidth="600"
       ShowsNavigationUI="False"
-      MinHeight="200"
-      DataContext="{x:Static local:Model.Singleton}"
-	  Title="Start">
+      DataContext="{x:Static local:Model.Instance}"
+	  WindowTitle="IE10 履歴バックアップ/リストア">
     
     <Page.Resources>
         <ResourceDictionary>
@@ -30,6 +29,9 @@
             <TextBlock Margin="20,0,0,20" TextWrapping="Wrap">
                 <Hyperlink Style="{StaticResource Task}" NavigateUri="Restore.xaml">リストア</Hyperlink><LineBreak />
                 バックアップした履歴情報を復元します。復元後に Windows の再起動が必要です。
+            </TextBlock>
+            <TextBlock Margin="0,0,0,0" TextAlignment="Right">
+                Version <Run Text="{Binding Version}"/>
             </TextBlock>
         </StackPanel>
     </Grid>

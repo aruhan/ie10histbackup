@@ -26,7 +26,7 @@ namespace HistBackup
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Model.Singleton.DoBackup())
+            if (Model.Instance.DoBackup())
             {
                 MessageBox.Show("バックアップに成功しました");
             }

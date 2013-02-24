@@ -10,9 +10,10 @@ namespace HistBackup
 {
     class Model : BindableBase
     {
-        public static readonly Model Singleton = new Model();
+        public static readonly Model Instance = new Model();
 
         public string SystemDirectory { get; private set; }
+        public string Version { get; private set; }
 
         public string BackupDirectory
         {
@@ -28,6 +29,7 @@ namespace HistBackup
 
         public Model()
         {
+            Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             SystemDirectory = Environment.ExpandEnvironmentVariables(@"%LOCALAPPDATA%\Microsoft\Windows\WebCache");
             var datetime = DateTime.Now.ToString("yyyy-MM-dd hhmmyy");
             _backupDirectory = Path.Combine(BaseDir(), datetime);
@@ -42,6 +44,11 @@ namespace HistBackup
             var process = Process.Start(psi);
             process.WaitForExit();
             return process.ExitCode == 0;
+        }
+
+        public bool DoRestore()
+        {
+            return true;
         }
 
         private string _backupDirectory;

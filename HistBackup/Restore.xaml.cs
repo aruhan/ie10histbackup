@@ -7,10 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
 
 namespace HistBackup
 {
@@ -22,6 +20,22 @@ namespace HistBackup
         public Restore()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var model = Model.Instance;
+            if (!System.IO.Directory.Exists(model.RestoreDirectory))
+            {
+                MessageBox.Show(
+                    "バックアップ元ディレクトリが存在しません。存在するディレクトリを指定してください。",
+                    "バックアップ元ディレクトリが存在しません",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+                return;
+            }
+
         }
     }
 }
