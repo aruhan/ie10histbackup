@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:HistBackup" x:Class="HistBackup.Backup" 
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="600"
-    DataContext="{x:Static local:Model.Instance}"
+    DataContext="{x:Static local:ModelLocator.Model}"
     >
 
     <Grid>

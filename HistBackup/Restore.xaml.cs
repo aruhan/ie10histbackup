@@ -24,7 +24,7 @@ namespace HistBackup
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var model = Model.Instance;
+            var model = ModelLocator.Model;
             if (!System.IO.Directory.Exists(model.RestoreDirectory))
             {
                 MessageBox.Show(

@@ -8,10 +8,13 @@ using System.Diagnostics;
 
 namespace HistBackup
 {
+    class ModelLocator
+    {
+        public static Model Model = new Model();
+    }
+
     class Model : BindableBase
     {
-        public static readonly Model Instance = new Model();
-
         public string SystemDirectory { get; private set; }
         public string Version { get; private set; }
 
@@ -37,10 +40,11 @@ namespace HistBackup
 
         public bool DoBackup()
         {
-            var exepath = Path.Combine(BaseDir(), "HoboCopy.exe");
+            var arch = Environment.Is64BitOperatingSystem ? "x64" : "x86";
+            var exepath = Path.Combine(BaseDir(), "HoboCopy", String.Format("HoboCopy-{0}.exe", arch));
             var psi = new ProcessStartInfo(
                 exepath,
-                String.Format("{0} {1}", SystemDirectory, BackupDirectory));
+                String.Format("{0} \"{1}\"", SystemDirectory, BackupDirectory));
             var process = Process.Start(psi);
             process.WaitForExit();
             return process.ExitCode == 0;

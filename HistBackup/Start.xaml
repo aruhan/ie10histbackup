@@ -8,7 +8,7 @@
       WindowHeight="280" WindowWidth="600"
       d:DesignHeight="280" d:DesignWidth="600"
       ShowsNavigationUI="False"
-      DataContext="{x:Static local:Model.Instance}"
+      DataContext="{x:Static local:ModelLocator.Model}"
 	  WindowTitle="IE10 履歴バックアップ/リストア">
     
     <Page.Resources>
