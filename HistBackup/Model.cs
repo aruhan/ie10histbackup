@@ -16,6 +16,7 @@ namespace HistBackup
     class Model : BindableBase
     {
         public string SystemDirectory { get; private set; }
+
         public string Version { get; private set; }
 
         public string BackupDirectory
@@ -34,7 +35,7 @@ namespace HistBackup
         {
             Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             SystemDirectory = Environment.ExpandEnvironmentVariables(@"%LOCALAPPDATA%\Microsoft\Windows\WebCache");
-            var datetime = DateTime.Now.ToString("yyyy-MM-dd hhmmyy");
+            var datetime = DateTime.Now.ToString("yyyy-MM-dd HHmmss");
             _backupDirectory = Path.Combine(BaseDir(), datetime);
         }
 
@@ -52,15 +53,30 @@ namespace HistBackup
 
         public bool DoRestore()
         {
+            if (!Directory.Exists(RestoreDirectory)) return false;
+            var files = Directory.EnumerateFiles(RestoreDirectory);
+            var mapping = files.Select(_ => new { origpath = _, tempname = Path.GetRandomFileName() });
+
+            foreach (var f in mapping)
+            {
+                var temppath = Path.Combine(SystemDirectory, f.tempname);
+                File.Copy(f.origpath, temppath);
+                Win32Api.MoveFileEx(
+                    temppath,
+                    Path.Combine(SystemDirectory, Path.GetFileName(f.origpath)),
+                    Win32Api.MoveFileExFlag.MOVEFILE_DELAY_UNTIL_REBOOT | Win32Api.MoveFileExFlag.MOVEFILE_DELAY_UNTIL_REBOOT);
+            }
+
             return true;
         }
-
-        private string _backupDirectory;
-        private string _restoreDirectory;
 
         private static string BaseDir()
         {
             return Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
         }
+
+        private string _backupDirectory;
+        private string _restoreDirectory;
+
     }
 }

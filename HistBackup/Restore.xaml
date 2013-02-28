@@ -13,7 +13,10 @@
         <Label Content="リストア" Margin="10,10,10,0" FontSize="18" FontWeight="Bold" Height="33" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <StackPanel Margin="32,50,10,0">
             <Label Content="コピー元ディレクトリ" Margin="0,0,0,0" VerticalAlignment="Top" Height="25" HorizontalAlignment="Left" Width="109"/>
-            <TextBox Height="23" Margin="24,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" VerticalContentAlignment="Center" Text="{Binding RestoreDirectory}" />
+            <DockPanel Height="24" Margin="24,0,0,0" >
+                <Button DockPanel.Dock="Right" Width="24" Margin="2" Background="Transparent" Click="FolderSelect">...</Button>
+                <TextBox TextWrapping="NoWrap" VerticalContentAlignment="Center" Text="{Binding RestoreDirectory}" />
+            </DockPanel>
             <Label Content="コピー先ディレクトリ" Margin="0,16,0,0" VerticalAlignment="Top" Height="25" Width="109" HorizontalAlignment="Left"/>
             <TextBlock Margin="24,0,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Text="{Binding SystemDirectory}"/>
             <Button Margin="0,20,0,0" Content="リストアを開始" Click="Button_Click" HorizontalAlignment="Left" FontSize="24" RenderTransformOrigin="1.17,0.735" Height="34" VerticalAlignment="Top"/>

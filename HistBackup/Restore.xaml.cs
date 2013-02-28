@@ -9,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using System.IO;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace HistBackup
 {
@@ -35,7 +36,25 @@ namespace HistBackup
                 );
                 return;
             }
+            model.DoRestore();
+        }
 
+        private void FolderSelect(object sender, RoutedEventArgs e)
+        {
+            var model = ModelLocator.Model;
+            using (var dlg = new CommonOpenFileDialog())
+            {
+                dlg.IsFolderPicker = true;
+                dlg.EnsurePathExists = true;
+                if (Directory.Exists(model.RestoreDirectory))
+                {
+                    dlg.InitialDirectory = model.RestoreDirectory;
+                }
+                if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    model.RestoreDirectory = dlg.FileName;
+                }
+            }
         }
     }
 }
