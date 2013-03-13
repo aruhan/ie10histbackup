@@ -64,7 +64,7 @@ namespace HistBackup
                 Win32Api.MoveFileEx(
                     temppath,
                     Path.Combine(SystemDirectory, Path.GetFileName(f.origpath)),
-                    Win32Api.MoveFileExFlag.MOVEFILE_DELAY_UNTIL_REBOOT | Win32Api.MoveFileExFlag.MOVEFILE_DELAY_UNTIL_REBOOT);
+                    Win32Api.MoveFileExFlag.MOVEFILE_DELAY_UNTIL_REBOOT | Win32Api.MoveFileExFlag.MOVEFILE_REPLACE_EXISTING);
             }
 
             return true;

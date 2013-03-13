@@ -36,7 +36,10 @@ namespace HistBackup
                 );
                 return;
             }
-            model.DoRestore();
+            if (model.DoRestore()) 
+            {
+                MessageBox.Show("リストアを完了するためにシステムを再起動してください。");
+            }
         }
 
         private void FolderSelect(object sender, RoutedEventArgs e)
