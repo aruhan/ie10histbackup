@@ -24,7 +24,7 @@
             <TextBlock Margin="0,0,0,10">行いたい処理を選んでください。</TextBlock>
             <TextBlock Margin="20,0,0,10" TextWrapping="Wrap">
                 <Hyperlink Style="{StaticResource Task}" NavigateUri="Backup.xaml">バックアップ</Hyperlink><LineBreak />
-                IE10 の履歴情報(WebCacheV01.dat 他)指定したディレクトリにバックアップします。<LineBreak />
+                IE10 の履歴情報(WebCacheV01.dat 他)を指定したディレクトリにバックアップします。<LineBreak />
             </TextBlock>
             <TextBlock Margin="20,0,0,20" TextWrapping="Wrap">
                 <Hyperlink Style="{StaticResource Task}" NavigateUri="Restore.xaml">リストア</Hyperlink><LineBreak />
